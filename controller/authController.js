@@ -4,7 +4,6 @@ const passport = require("passport");
 const authView = (req, res) => {
     res.render('authentication', {title: 'Authentication'});
 }
-
 const auth = (req, res) => {
     if ('login' === req.body.formType) {
         const {username, password} = req.body;
