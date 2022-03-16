@@ -7,10 +7,36 @@
 var app = require('../app');
 var debug = require('debug')('katering-javascript:server');
 var http = require('http');
+const Page = require("../model/page");
 
 /**
  * Get port from environment and store in Express.
  */
+async function initData(req, res, next) {
+    console.log('hello World')
+    const total = await Page.estimatedDocumentCount();
+    console.log(total);
+    if (total < 1) {
+        const obj = {
+            setting: undefined,
+            title: undefined,
+            header: undefined,
+            subheader: undefined,
+            about: undefined,
+            alamat: undefined,
+            hp: undefined
+        }
+        Page.create(obj, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Initialize Data');
+            }
+        })
+    }
+}
+
+initData()
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

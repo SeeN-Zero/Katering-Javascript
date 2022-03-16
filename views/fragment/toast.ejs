@@ -1,0 +1,30 @@
+<% if (messagesuc.length > 0) { %>
+    <div style="position: sticky; top: 0; right: 0;z-index: 100;">
+        <div style="position: absolute;top: 0; right: 0;z-index: 100;" class="toast hide" role="alert"
+             aria-live="assertive" aria-atomic="true" data-delay="5000">
+            <div class="toast-header" style="background-color:#6cf56c">
+                <i class="fa-solid fa-thumbs-up" style="color:black;"></i>&nbsp;&nbsp;
+                <strong class="mr-auto" style="color: black">Berhasil</strong>
+            </div>
+            <div class="toast-body"
+                 style="display:flex;width: 300px; height: 80px;justify-content: center;align-items: center;color: black">
+                <strong><%= messagesuc %></strong>
+            </div>
+        </div>
+    </div>
+<% } %>
+<% if (messageerr.length > 0) { %>
+    <div style="position: sticky; top: 0; right: 0;z-index: 100;">
+        <div style="position: absolute;top: 0; right: 0;z-index: 100;" class="toast hide" role="alert"
+             aria-live="assertive" aria-atomic="true" data-delay="5000">
+            <div class="toast-header" style="background-color:#d12e4c">
+                <i class="fa-solid fa-thumbs-down" style="color:black;"></i>&nbsp;&nbsp;
+                <strong class="mr-auto" style="color: black">Gagal</strong>
+            </div>
+            <div class="toast-body"
+                 style="display:flex;width: 300px; height: 80px;justify-content: center;align-items: center;color: black">
+                <strong><%= messageerr %></strong>
+            </div>
+        </div>
+    </div>
+<% } %>

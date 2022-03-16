@@ -31,25 +31,22 @@ const upload = multer({storage: storage});
                     VIEW
 =============================================
 */
-const viewDash = (req, res) => {
-    Produk.find({}, (err, produks) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('dashboard', {produks});
-        }
-    })
-}
-
-const viewUpdate = (req, res) => {
-    const id = req.params.id;
-    Produk.find({_id: id}, (err, produk) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('update', {produk});
-        }
-    })
+const viewProduk = async (req, res) => {
+    const totProduk = await Produk.estimatedDocumentCount();
+    const username = await req.user.username;
+    Produk.find({},
+        (err, produks) => {
+            if (err) {
+                console.log(err);
+                res.redirect('/produk');
+            } else {
+                res.render('produk', {
+                    produks, totProduk, username,
+                    messagesuc: req.flash('success'),
+                    messageerr: req.flash('error')
+                });
+            }
+        })
 }
 
 /*
@@ -71,12 +68,18 @@ const addProduk = (req, res, next) => {
     Produk.create(obj, (err) => {
         if (err) {
             console.log(err);
+            req.flash('error', err);
+            res.redirect('/produk');
         } else {
-            console.log(obj);
-            res.redirect('/dash');
+            req.flash('success', 'Produk Berhasil Ditambahkan');
+            res.redirect('/produk');
             fs.unlink(path.join(__dirname, '..', 'uploads/' + req.file.filename), err => {
-                if (err) throw err;
-                console.log("File Deleted");
+                if (err) {
+                    console.log(err);
+                    req.flash('error', err);
+                    res.redirect('/produk');
+                }
+
             });
         }
     })
@@ -85,47 +88,64 @@ const addProduk = (req, res, next) => {
 /*===============UPDATE==================*/
 const updateProduk = (req, res, next) => {
     const id = req.params.id
-    const obj = {
-        name: req.body.name,
-        deskripsi: req.body.deskripsi,
-        img: {
-            data: fs.readFileSync(path.join(__dirname, '..', 'uploads/' + req.file.filename)),
-            contentType: 'image/png'
+    if (req.file) {
+        const obj = {
+            name: req.body.name,
+            deskripsi: req.body.deskripsi,
+            img: {
+                data: fs.readFileSync(path.join(__dirname, '..', 'uploads/' + req.file.filename)),
+                contentType: 'image/png'
+            }
         }
+        Produk.findByIdAndUpdate({_id: id}, obj, (err) => {
+            if (err) {
+                req.flash('error', err);
+                console.log(err);
+                res.redirect('/produk');
+            } else {
+                req.flash('success', 'Produk Berhasil Diupdate');
+                res.redirect('/produk');
+                fs.unlink(path.join(__dirname, '..', 'uploads/' + req.file.filename), err => {
+                    if (err) {
+                        req.flash('error', err);
+                        console.log(err);
+                        res.redirect('/produk');
+                    }
+                });
+            }
+        })
+    } else {
+        const obj = {
+            name: req.body.name,
+            deskripsi: req.body.deskripsi
+        }
+        Produk.findByIdAndUpdate({_id: id}, obj, (err) => {
+            if (err) {
+                req.flash('error', err);
+                console.log(err);
+                res.redirect('/produk');
+            } else {
+                req.flash('success', 'Produk Berhasil Diupdate');
+                res.redirect('/produk');
+            }
+        })
     }
-    console.log(obj);
-    Produk.findByIdAndUpdate({_id: id}, obj, (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("Terupdate");
-            res.redirect('/dash');
-            fs.unlink(path.join(__dirname, '..', 'uploads/' + req.file.filename), err => {
-                if (err) throw err;
-                console.log("File Deleted");
-            });
-        }
-    })
-}
+};
 
 /*===============DELETE==================*/
 const deleteProduk = (req, res, next) => {
     const id = req.params.id;
-    Produk.findByIdAndRemove({_id: id})
-        .then(data => {
-            if (!data) {
-                console.log("Cannot delete");
-            } else {
-                console.log("Terhapus");
-                res.redirect('/dash');
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Could not delete Tutorial with id=" + id
-            });
-        });
+    Produk.findByIdAndRemove({_id: id}, (err) => {
+        if (err) {
+            req.flash('error', err);
+            console.log(err);
+            res.redirect('/produk');
+        } else {
+            req.flash('success', 'Produk Berhasil Dihapus');
+            res.redirect('/produk');
+        }
+    })
 }
 
-module.exports = {upload, viewDash, addProduk, deleteProduk, viewUpdate, updateProduk};
+module.exports = {upload, viewProduk, addProduk, deleteProduk, updateProduk};
 
