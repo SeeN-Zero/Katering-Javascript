@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require('moment');
 const artikelSchema = new mongoose.Schema({
     judul: {
         type: String,
@@ -13,8 +14,8 @@ const artikelSchema = new mongoose.Schema({
         required: true,
     },
     tanggal: {
-        type: Date,
-        default: Date.now,
+        type: String,
+        default: moment(new Date(Date.now())).format('ll'),
     },
     author: {
         type: String,

@@ -18,7 +18,6 @@ const viewArtikel = async (req, res) => {
     Artikel.find({author: username},
         (err, artikels) => {
             if (err) {
-                console.log("Errrrrrrrrrrrrrrrrrrrrrrrrrrror")
                 console.log(err);
                 res.redirect('/produk');
             } else {
