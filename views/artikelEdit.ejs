@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include fragment/head.ejs %>
+
+<body id="page-top">
+<%- include fragment/toast.ejs %>
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <%- include fragment/sidebar.ejs %>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <%- include fragment/topbar.ejs %>
+            <!-- End of Topbar -->
+            <!-- Begin Page Content -->
+
+            <div class="container-fluid">
+                <!-- Content Row -->
+                <div class="col">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col-md">
+                                    <h3 class="m-0 font-weight-bold text-primary">
+                                        Update Artikel
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <% artikel.forEach(function(artikel) { %>
+                                <form action="/artikelEdit/update/<%= artikel._id %>" method="POST">
+                                    <div class="form-group">
+                                        <label for="name">Judul Artikel</label>
+                                        <input class="form-control" type="text" id="name"
+                                               placeholder="Judul Artikel" name="judul"
+                                               value="<%= artikel.judul %>"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="caption">Caption(Optional)</label>
+                                        <input class="form-control" type="text" id="caption"
+                                               placeholder="Caption(Optional)" name="caption"
+                                               value="<%= artikel.caption %>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="desc">Isi Artikel</label>
+                                        <script>$(document).ready(function () {
+                                                $('#summernote').summernote({
+                                                    height: 300,
+                                                    minHeight: 300
+                                                }).summernote('code', '<%- artikel.isi %>');
+                                            });</script>
+                                        <textarea class="form-control" id="summernote" name="isi"
+                                                  placeholder="Deskripsi Produk"
+                                                  required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Update Artikel</button>
+                                </form>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
+        <%- include fragment/foot.ejs %>
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<%- include fragment/logout.ejs %>
+
+</body>
+</html>

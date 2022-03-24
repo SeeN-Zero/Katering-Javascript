@@ -1,9 +1,17 @@
 # Changelog
 
+## [1.1.0] - 2022-03-24
+
+### Added
+
+- Article feature with WYSIWYG editor
+
 ## [1.0.1] - 2022-03-17
 
-- Fix dahsboard error when click
-- Fix topbar contact menu in index do nothing when click
+### Fixed
+
+- Dahsboard error when click
+- Topbar contact menu in index do nothing when click
 
 ## [1.0.0] - 2022-03-16
 

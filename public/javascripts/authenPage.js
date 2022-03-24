@@ -16,5 +16,5 @@ window.onload = function () {
         document.getElementById("usernamereg").value = "";
         document.getElementById("passwordreg").value = "";
     });
-}
+};
 

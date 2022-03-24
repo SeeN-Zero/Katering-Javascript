@@ -45,7 +45,7 @@ const viewPageSetting = async (req, res) => {
                 });
             }
         })
-}
+};
 /*
 =============================================
                     CRUD
@@ -53,8 +53,8 @@ const viewPageSetting = async (req, res) => {
 */
 
 /*===============UPDATE==================*/
-const updatePage = (req, res, next) => {
-    const id = req.params.id
+const updatePage = (req, res) => {
+    const id = req.params.id;
     if (req.file) {
         const obj = {
             title: req.body.title,
@@ -67,7 +67,7 @@ const updatePage = (req, res, next) => {
             about: req.body.about,
             alamat: req.body.alamat,
             hp: req.body.hp
-        }
+        };
         Page.findOneAndUpdate({setting: id}, obj, (err) => {
             if (err) {
                 req.flash('error', err);
@@ -93,7 +93,7 @@ const updatePage = (req, res, next) => {
             about: req.body.about,
             alamat: req.body.alamat,
             hp: req.body.hp
-        }
+        };
         console.log(obj);
         Page.findOneAndUpdate({setting: id}, obj, (err) => {
             if (err) {
@@ -106,5 +106,5 @@ const updatePage = (req, res, next) => {
             }
         })
     }
-}
+};
 module.exports = {upload, viewPageSetting, updatePage};

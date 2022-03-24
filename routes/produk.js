@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {protectRoute} = require("../auth/authview");
-const {upload, viewProduk, addProduk, deleteProduk, updateProduk} = require('../controller/produkController')
+const {upload, viewProduk, addProduk, deleteProduk, updateProduk} = require('../controller/produkController');
 
 router.get('/produk', protectRoute, viewProduk);
 router.post('/produk/add', protectRoute, upload.single('image'), addProduk);

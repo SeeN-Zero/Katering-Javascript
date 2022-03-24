@@ -1,8 +1,8 @@
 <!-- Edit Modal HTML -->
-<div id="update<%= produk._id %>" class="modal fade" data-backdrop="static">
+<div id="update<%= produk._id; %>" class="modal fade" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <form action="/produk/update/<%= produk._id %>" method="POST" enctype="multipart/form-data">
+            <form action="/produk/update/<%= produk._id; %>" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h4 class="modal-title">Ubah Produk</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -13,12 +13,12 @@
                     <div class="form-group">
                         <label for="name">Nama Produk</label>
                         <input class="form-control" type="text" id="name" placeholder="Nama Produk" name="name"
-                               value="<%= produk.name %>" required>
+                               value="<%= produk.name; %>" required>
                     </div>
                     <div class="form-group">
                         <label for="desc">Deskripsi Produk</label>
                         <textarea class="form-control" id="desc" name="deskripsi" placeholder="Deskripsi Produk"
-                                  value="" required><%= produk.deskripsi %></textarea>
+                                  required><%= produk.deskripsi; %></textarea>
                     </div>
                     <div class="form-group">
                         <label for="image">Upload Image</label>
@@ -35,7 +35,7 @@
     </div>
 </div>
 <!-- Delete Modal HTML -->
-<div id="delete<%= produk._id %>" class="modal fade" data-backdrop="static">
+<div id="delete<%= produk._id; %>" class="modal fade" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form>
@@ -56,14 +56,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <a type="button" class="btn btn-danger" href="/produk/delete/<%= produk._id %>">Hapus</a>
+                    <a type="button" class="btn btn-danger" href="/produk/delete/<%= produk._id; %>">Hapus</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
 <!-- Image Modal HTML -->
-<div id="image<%= produk._id %>" class="modal fade">
+<div id="image<%= produk._id; %>" class="modal fade">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form>
@@ -81,8 +81,8 @@
                 <div class="modal-body">
                     <div class="col" style="margin-left: 9px">
                         <div class="col-md">
-                            <img style="width: 400px; height: 225px;"
-                                 src="data:image/<%= produk.img.contentType %>;base64,<%= produk.img.data.toString('base64') %>">
+                            <img alt="Image Menu" style="width: 400px; height: 225px;"
+                                 src="data:image/<%= produk.img.contentType; %>;base64,<%= produk.img.data.toString('base64'); %>">
                         </div>
                     </div>
                 </div>

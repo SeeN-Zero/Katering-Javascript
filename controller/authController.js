@@ -1,6 +1,5 @@
 const User = require("../model/user");
 const passport = require("passport");
-const {UserExistsError, IncorrectPasswordError} = require("passport-local-mongoose/lib/errors");
 
 const authView = (req, res) => {
     res.render('authentication', {
@@ -9,7 +8,7 @@ const authView = (req, res) => {
         messageerr: req.flash('error')
 
     });
-}
+};
 
 const updateView = (req, res) => {
     const username = req.user.username;
@@ -17,7 +16,7 @@ const updateView = (req, res) => {
         username, messagesuc: req.flash('success'),
         messageerr: req.flash('error')
     })
-}
+};
 
 const updateUser = (req, res) => {
     const {oldPassword, newPassword, retypePassword} = req.body;
@@ -39,7 +38,7 @@ const updateUser = (req, res) => {
             }
         })
     }
-}
+};
 
 const auth = (req, res) => {
     if ('login' === req.body.formType) {
@@ -49,7 +48,7 @@ const auth = (req, res) => {
                 failureRedirect: "/auth",
                 failureFlash: "Password Atau Username Salah",
                 successFlash: "Selamat Datang"
-            })(req, res), (req, res) => {
+            })(req, res), () => {
         };
     } else {
         const {usernamereg, passwordreg} = req.body;
@@ -59,7 +58,7 @@ const auth = (req, res) => {
         } else {
             User.register(new User({username: usernamereg}), passwordreg, function (err) {
                 if (err) {
-                    console.log(err)
+                    console.log(err);
                     req.flash('error', 'Username ' + usernamereg + ' Sudah Ada');
                     res.redirect('/auth');
                 } else {
@@ -74,5 +73,5 @@ const auth = (req, res) => {
 const logout = (req, res) => {
     req.logout();
     res.redirect('/auth')
-}
+};
 module.exports = {authView, auth, updateView, updateUser, logout};

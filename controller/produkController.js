@@ -1,7 +1,7 @@
 const multer = require('multer');
-const Produk = require('../model/produk')
-const fs = require('fs')
-const path = require('path')
+const Produk = require('../model/produk');
+const fs = require('fs');
+const path = require('path');
 
 /*By Senna Annaba Ahmad*/
 
@@ -47,7 +47,7 @@ const viewProduk = async (req, res) => {
                 });
             }
         })
-}
+};
 
 /*
 =============================================
@@ -56,7 +56,7 @@ const viewProduk = async (req, res) => {
 */
 
 /*===============ADD==================*/
-const addProduk = (req, res, next) => {
+const addProduk = (req, res) => {
     const obj = {
         name: req.body.name,
         deskripsi: req.body.deskripsi,
@@ -64,7 +64,7 @@ const addProduk = (req, res, next) => {
             data: fs.readFileSync(path.join(__dirname, '..', 'uploads/' + req.file.filename)),
             contentType: 'image/png'
         }
-    }
+    };
     Produk.create(obj, (err) => {
         if (err) {
             console.log(err);
@@ -83,11 +83,11 @@ const addProduk = (req, res, next) => {
             });
         }
     })
-}
+};
 
 /*===============UPDATE==================*/
-const updateProduk = (req, res, next) => {
-    const id = req.params.id
+const updateProduk = (req, res) => {
+    const id = req.params.id;
     if (req.file) {
         const obj = {
             name: req.body.name,
@@ -96,7 +96,7 @@ const updateProduk = (req, res, next) => {
                 data: fs.readFileSync(path.join(__dirname, '..', 'uploads/' + req.file.filename)),
                 contentType: 'image/png'
             }
-        }
+        };
         Produk.findByIdAndUpdate({_id: id}, obj, (err) => {
             if (err) {
                 req.flash('error', err);
@@ -118,7 +118,7 @@ const updateProduk = (req, res, next) => {
         const obj = {
             name: req.body.name,
             deskripsi: req.body.deskripsi
-        }
+        };
         Produk.findByIdAndUpdate({_id: id}, obj, (err) => {
             if (err) {
                 req.flash('error', err);
@@ -133,7 +133,7 @@ const updateProduk = (req, res, next) => {
 };
 
 /*===============DELETE==================*/
-const deleteProduk = (req, res, next) => {
+const deleteProduk = (req, res) => {
     const id = req.params.id;
     Produk.findByIdAndRemove({_id: id}, (err) => {
         if (err) {
@@ -145,7 +145,7 @@ const deleteProduk = (req, res, next) => {
             res.redirect('/produk');
         }
     })
-}
+};
 
 module.exports = {upload, viewProduk, addProduk, deleteProduk, updateProduk};
 
