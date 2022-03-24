@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2] - 2022-03-24
+
+### Fixed
+
+- Mobile and desktop views when viewing articles
+- Error when uploading product
+
 ## [1.1.1] - 2022-03-24
 
 ### Fixed

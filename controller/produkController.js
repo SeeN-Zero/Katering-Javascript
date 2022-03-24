@@ -12,6 +12,9 @@ const path = require('path');
 */
 const storage = multer.diskStorage({
     destination: (req, file, done) => {
+        if (!fs.existsSync(path.join(__dirname, '..', 'uploads'))) {
+            fs.mkdirSync(path.join(__dirname, '..', 'uploads'))
+        }
         done(null, 'uploads')
     },
     filename: (req, file, done) => {
@@ -57,6 +60,7 @@ const viewProduk = async (req, res) => {
 
 /*===============ADD==================*/
 const addProduk = (req, res) => {
+
     const obj = {
         name: req.body.name,
         deskripsi: req.body.deskripsi,
