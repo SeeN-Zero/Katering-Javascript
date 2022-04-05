@@ -8,7 +8,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 
 // My Module
-const db = require('./db');
+const {connection} = require('./db');
 const authenticationRouter = require('./routes/authentication');
 const produkRouter = require('./routes/produk');
 const pageSettingRouter = require('./routes/pageSetting');
@@ -17,6 +17,9 @@ const artikelRouter = require('./routes/artikel');
 const User = require("./model/user");
 
 const app = express();
+
+//Db Connection
+connection();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -12,9 +12,8 @@ const Page = require("../model/page");
  * Get port from environment and store in Express.
  */
 async function initData() {
-    console.log('hello World');
     const total = await Page.estimatedDocumentCount();
-    console.log(total);
+    console.log(total)
     if (total < 1) {
         const obj = {
             setting: undefined,
@@ -35,7 +34,7 @@ async function initData() {
     }
 }
 
-initData();
+initData()
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

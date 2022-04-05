@@ -1,7 +1,5 @@
 const multer = require('multer');
 const Produk = require('../model/produk');
-const fs = require('fs');
-const path = require('path');
 
 /*By Senna Annaba Ahmad*/
 
@@ -10,17 +8,7 @@ const path = require('path');
                 MULTER SETTING
 =============================================
 */
-const storage = multer.diskStorage({
-    destination: (req, file, done) => {
-        if (!fs.existsSync(path.join(__dirname, '..', 'uploads'))) {
-            fs.mkdirSync(path.join(__dirname, '..', 'uploads'))
-        }
-        done(null, 'uploads')
-    },
-    filename: (req, file, done) => {
-        done(null, file.fieldname + '-' + Date.now())
-    }
-});
+const storage = multer.memoryStorage()
 const upload = multer({storage: storage});
 
 /*
@@ -65,7 +53,7 @@ const addProduk = (req, res) => {
         name: req.body.name,
         deskripsi: req.body.deskripsi,
         img: {
-            data: fs.readFileSync(path.join(__dirname, '..', 'uploads/' + req.file.filename)),
+            data: req.file.buffer,
             contentType: 'image/png'
         }
     };
@@ -77,14 +65,6 @@ const addProduk = (req, res) => {
         } else {
             req.flash('success', 'Produk Berhasil Ditambahkan');
             res.redirect('/produk');
-            fs.unlink(path.join(__dirname, '..', 'uploads/' + req.file.filename), err => {
-                if (err) {
-                    console.log(err);
-                    req.flash('error', err);
-                    res.redirect('/produk');
-                }
-
-            });
         }
     })
 };
@@ -97,7 +77,7 @@ const updateProduk = (req, res) => {
             name: req.body.name,
             deskripsi: req.body.deskripsi,
             img: {
-                data: fs.readFileSync(path.join(__dirname, '..', 'uploads/' + req.file.filename)),
+                data: req.file.buffer,
                 contentType: 'image/png'
             }
         };
@@ -109,13 +89,6 @@ const updateProduk = (req, res) => {
             } else {
                 req.flash('success', 'Produk Berhasil Diupdate');
                 res.redirect('/produk');
-                fs.unlink(path.join(__dirname, '..', 'uploads/' + req.file.filename), err => {
-                    if (err) {
-                        req.flash('error', err);
-                        console.log(err);
-                        res.redirect('/produk');
-                    }
-                });
             }
         })
     } else {

@@ -48,8 +48,7 @@ const auth = (req, res) => {
                 failureRedirect: "/auth",
                 failureFlash: "Password Atau Username Salah",
                 successFlash: "Selamat Datang"
-            })(req, res), () => {
-        };
+            })(req, res)
     } else {
         const {usernamereg, passwordreg} = req.body;
         if (passwordreg.length < 8) {

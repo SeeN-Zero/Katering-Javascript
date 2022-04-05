@@ -1,7 +1,5 @@
 const multer = require('multer');
 const Page = require('../model/page');
-const fs = require('fs');
-const path = require('path');
 
 /*By Senna Annaba Ahmad*/
 
@@ -10,14 +8,7 @@ const path = require('path');
                 MULTER SETTING
 =============================================
 */
-const storage = multer.diskStorage({
-    destination: (req, file, done) => {
-        done(null, 'uploads')
-    },
-    filename: (req, file, done) => {
-        done(null, file.fieldname + '-' + Date.now())
-    }
-});
+const storage = multer.memoryStorage()
 const upload = multer({storage: storage});
 
 /*
@@ -32,7 +23,7 @@ const upload = multer({storage: storage});
 */
 const viewPageSetting = async (req, res) => {
     const username = await req.user.username;
-    Page.find({setting: "setting"},
+    Page.findOne({setting: "setting"},
         (err, page) => {
             if (err) {
                 console.log(err);
@@ -59,7 +50,7 @@ const updatePage = (req, res) => {
         const obj = {
             title: req.body.title,
             logo: {
-                data: fs.readFileSync(path.join(__dirname, '..', 'uploads/' + req.file.filename)),
+                data: req.file.buffer,
                 contentType: 'image/png'
             },
             header: req.body.header,
@@ -76,13 +67,6 @@ const updatePage = (req, res) => {
             } else {
                 req.flash('success', 'Halaman Utama Berhasil Diupdate');
                 res.redirect('/pageSetting');
-                fs.unlink(path.join(__dirname, '..', 'uploads/' + req.file.filename), err => {
-                    if (err) {
-                        req.flash('error', err);
-                        console.log(err);
-                        res.redirect('/pageSetting');
-                    }
-                });
             }
         })
     } else {
