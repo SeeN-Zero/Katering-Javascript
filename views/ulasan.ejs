@@ -22,60 +22,82 @@
             <div class="container-fluid">
                 <!-- Content Row -->
                 <div class="col">
+                    <div class="card shadow mb-1" style="width: 400px">
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col-md">
+                                    <h5 class="m-0 font-weight-bold text-primary">
+                                        Token
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="form-group row">
+                                        <input id="token" class="col form-control"
+                                               style="margin-right: 20px;margin-left: 20px"
+                                               type="text" value="<%= code.number %>" readonly>
+                                        <button type="button" class="col btn btn-primary" id="repres"><i
+                                                    class="fa-solid fa-arrow-rotate-right"
+                                                    style="margin-right: 10px;"></i>Refresh
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class=" col">
+                                    <span class="d-inline-block" data-toggle="popover"
+                                          data-content="Token digunakan oleh pelanggan agar dapat menambahkan ulasan pada halaman utama">
+                                        <button class="btn rounded-circle" style="pointer-events: none;" type="button"
+                                                disabled><i class="fa-solid fa-circle-question fa-lg"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="row">
                                 <div class="col-md">
                                     <h3 class="m-0 font-weight-bold text-primary">
-                                        Daftar Artikel
+                                        Ulasan Table
                                     </h3>
                                 </div>
-                                <div class="colmd"><a href="/artikelAdd" class="btn btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                        <span class="text">Buat Artikel</span>
-                                    </a></div>
-
                             </div>
                         </div>
                         <div class="card-body">
-
                             <div class="table-responsive">
-
                                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th style="width: 15%">Judul</th>
-                                        <th style="width: 70%">Deskripsi</th>
+                                        <th style="width: 15%">Nama</th>
+                                        <th style="width: 70%">Ulasan</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                     </thead>
-                                        <tbody>
-                                        <% artikels.forEach(function(artikel) { %>
+                                    <tbody>
+                                    <% ulasans.forEach(function(ulasan) { %>
                                         <tr>
-                                            <td><%= artikel.judul; %></td>
-                                            <td><%= artikel.caption; %></td>
+                                            <td><%= ulasan.nama; %></td>
+                                            <td><%= ulasan.ulasan; %></td>
                                             <td>
                                                 <div class="row">
-                                                    <div class="col-3"><a href="/artikelEdit/<%= artikel._id; %>">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a></div>
                                                     <div class="col-3">
-                                                        <a href="#delete<%= artikel._id; %>"
+                                                        <a href="#delete<%= ulasan._id; %>"
                                                            data-toggle="modal">
                                                             <i class="fa-solid fa-trash"></i>
-                                                        </a>
-                                                    </div>
+                                                        </a></div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <div id="delete<%= artikel._id; %>" class="modal fade" data-backdrop="static">
+                                        <!-- Delete Modal HTML -->
+                                        <div id="delete<%= ulasan._id; %>" class="modal fade" data-backdrop="static">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <form>
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Hapus Artikel</h4>
+                                                            <h4 class="modal-title">Hapus Ulasan</h4>
                                                             <button
                                                                     class="close"
                                                                     type="button"
@@ -86,7 +108,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Apakah yakin ingin menghapus artikel ini?</p>
+                                                            <p>Apakah yakin ingin menghapus ulasan ini?</p>
                                                             <p class="text-warning"><small>Data yang dihapus tidak bisa
                                                                     dipulihkan.</small></p>
                                                         </div>
@@ -95,14 +117,14 @@
                                                                     data-dismiss="modal">Batal
                                                             </button>
                                                             <a type="button" class="btn btn-danger"
-                                                               href="/artikel/delete/<%= artikel._id; %>">Hapus</a>
+                                                               href="/deleteulasan/<%= ulasan._id; %>">Hapus</a>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
-                                        <% }); %>
-                                        </tbody>
+                                    <% }); %>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -125,6 +147,5 @@
     <i class="fas fa-angle-up"></i>
 </a>
 <%- include fragment/logout.ejs %>
-
 </body>
 </html>

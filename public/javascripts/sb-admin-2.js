@@ -68,4 +68,17 @@ window.onload = function () {
             minHeight: 300
         });
     });
+
+    $("#repres").on('click', function () {
+        $.ajax({
+            type: 'get',
+            url: '/token',
+            success: (result) => {
+                console.log(result)
+                document.getElementById('token').value = result.code.number;
+            }
+        })
+    });
+
+    $('[data-toggle="popover"]').popover()
 };

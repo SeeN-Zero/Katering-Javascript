@@ -1,5 +1,6 @@
 const multer = require('multer');
 const Produk = require('../model/produk');
+const Artikel = require('../model/artikel');
 
 /*By Senna Annaba Ahmad*/
 
@@ -24,6 +25,7 @@ const upload = multer({storage: storage});
 */
 const viewProduk = async (req, res) => {
     const totProduk = await Produk.estimatedDocumentCount();
+    const totArtikel = await Artikel.estimatedDocumentCount();
     const username = await req.user.username;
     Produk.find({},
         (err, produks) => {
@@ -32,7 +34,7 @@ const viewProduk = async (req, res) => {
                 res.redirect('/produk');
             } else {
                 res.render('produk', {
-                    produks, totProduk, username,
+                    produks, totProduk, totArtikel, username,
                     messagesuc: req.flash('success'),
                     messageerr: req.flash('error')
                 });
@@ -48,7 +50,6 @@ const viewProduk = async (req, res) => {
 
 /*===============ADD==================*/
 const addProduk = (req, res) => {
-
     const obj = {
         name: req.body.name,
         deskripsi: req.body.deskripsi,

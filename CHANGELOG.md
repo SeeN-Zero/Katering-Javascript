@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0] - 2022-04-13
+
+### Added
+
+- Ulasan feature (Add and Delete).
+
 ## [1.1.3] - 2022-03-24
 
 ### Fixed

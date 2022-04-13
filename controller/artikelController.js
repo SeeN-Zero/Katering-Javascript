@@ -25,6 +25,9 @@ const viewArtikel = async (req, res) => {
                     artikels, username,
                     messagesuc: req.flash('success'),
                     messageerr: req.flash('error')
+                }, function (err, html) {
+                    console.log(html)
+                    res.send(html)
                 });
             }
         })

@@ -5,205 +5,266 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title><%= page.title; %></title>
-        <!-- Favicon-->
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-              type="text/css"/>
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/stylesheets/index.css" rel="stylesheet"/>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css" rel="stylesheet"/>
-    </head>
-    <body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="#page-top"><%= page.title; %></a>
-            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#menu">Menu</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#blog">Blog</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
+    <!-- Favicon-->
+    <!-- Font Awesome icons (free version)-->
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+            integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+            crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/stylesheets/index.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css" rel="stylesheet"/>
+    <script>
+        window.onload = function () {
+            $('[data-toggle="popover"]').popover()
+        }
+    </script>
+</head>
+<body id="page-top">
+<%- include fragment/toastindex.ejs %>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#page-top"><%= page.title; %></a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#menu">Menu</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#blog">Blog</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a>
+                </li>
+            </ul>
         </div>
-    </nav>
-    <!-- Masthead-->
-    <header class="masthead bg-primary text-white text-center">
-        <div class="container d-flex align-items-center flex-column">
-            <!-- Masthead Avatar Image-->
-            <img style="width: 15rem;" alt="Logo"
-                 src="data:image/<%= page.logo.contentType; %>;base64,<%= page.logo.data.toString('base64'); %>">
-            <br>
-            <!-- Masthead Heading-->
-            <h1 class="masthead-heading text-uppercase mb-0"><%= page.header; %></h1>
-            <!-- Icon Divider-->
-            <div class="divider-custom divider-light">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Masthead Subheading-->
-            <p class="masthead-subheading font-weight-light mb-0">
-                <%= page.subheader; %>
-            </p>
+    </div>
+</nav>
+<!-- Masthead-->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img style="width: 15rem;" alt="Logo"
+             src="data:image/<%= page.logo.contentType; %>;base64,<%= page.logo.data.toString('base64'); %>">
+        <br>
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0"><%= page.header; %></h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
-    </header>
-    <!-- Menu Section-->
-    <section class="page-section menu pb-5" id="menu">
-        <div class="container">
-            <!-- Menu Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-                Menu
-            </h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Menu Grid Items-->
-            <div class="row justify-content-center">
-                <% if (produks.length > 0) { %>
-                    <% produks.forEach(function(produk) { %>
-                        <!-- Menu Item-->
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">
+            <%= page.subheader; %>
+        </p>
+    </div>
+</header>
+<!-- Menu Section-->
+<section class="page-section menu pb-5" id="menu">
+    <div class="container">
+        <!-- Menu Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+            Menu
+        </h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Menu Grid Items-->
+        <div class="row justify-content-center">
+            <% if (produks.length > 0) { %>
+                <% produks.forEach(function(produk) { %>
+                    <!-- Menu Item-->
 
-                        <div class="col-md-6 col-lg-4 mb-5">
-                            <div class="menu-item mx-auto" data-bs-toggle="modal"
-                                 data-bs-target="#menu<%= produk._id; %>">
-                                <div class="menu-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                    <div class="menu-item-caption-content text-center text-white">
-                                        <i class="fas fa-plus fa-3x"></i>
-                                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="menu-item mx-auto" data-bs-toggle="modal"
+                             data-bs-target="#menu<%= produk._id; %>">
+                            <div class="menu-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="menu-item-caption-content text-center text-white">
+                                    <i class="fas fa-plus fa-3x"></i>
                                 </div>
-                                <img style="width: 400px; height: 225px;" alt="Menu"
-                                     src="data:image/<%= produk.img.contentType; %>;base64,<%= produk.img.data.toString('base64'); %>">
+                            </div>
+                            <img style="width: 1000px; height: 225px; max-width: 100%; max-height: 100%" alt="Menu"
+                                 src="data:image/<%= produk.img.contentType; %>;base64,<%= produk.img.data.toString('base64'); %>">
+                        </div>
+                    </div>
+                    <%- include fragment/menumodal.ejs %>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+</section>
+<!-- Blog Section-->
+<section class="page-section pt-5" id="blog">
+    <div class="container">
+        <!-- Menu Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+            Blog dan Artikel
+        </h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom pb-5 pb-md-3">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Blog Section Content-->
+        <div class="blog-slider">
+            <div class="blog-slider__wrp swiper-wrapper">
+                <% if (artikels.length > 0) { %>
+                    <% artikels.forEach(function(artikel) { %>
+                        <div class="blog-slider__item swiper-slide">
+                            <div class="blog-slider__img">
+                                <img src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759872/kuldar-kalvik-799168-unsplash.webp"
+                                     alt="">
+                            </div>
+                            <div class="blog-slider__content">
+                                <span class="blog-slider__code"><%= artikel.tanggal %></span>
+                                <div class="blog-slider__title"><%= artikel.judul %></div>
+                                <div class="blog-slider__text"><%- artikel.caption %>
+                                </div>
+                                <a href="/showArtikel/<%= artikel._id %>" class="blog-slider__button">READ MORE</a>
                             </div>
                         </div>
-                        <%- include fragment/menumodal.ejs %>
                     <% }); %>
                 <% } %>
             </div>
-        </div>
-    </section>
-    <!-- Blog Section-->
-    <section class="page-section pt-5" id="blog">
-        <div class="container">
-            <!-- Menu Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-                Blog dan Artikel
-            </h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom pb-5 pb-md-3">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Blog Section Content-->
-            <div class="blog-slider">
-                <div class="blog-slider__wrp swiper-wrapper">
-                    <% if (artikels.length > 0) { %>
-                        <% artikels.forEach(function(artikel) { %>
-                            <div class="blog-slider__item swiper-slide">
-                                <div class="blog-slider__img">
-                                    <img src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759872/kuldar-kalvik-799168-unsplash.webp"
-                                         alt="">
-                                </div>
-                                <div class="blog-slider__content">
-                                    <span class="blog-slider__code"><%= artikel.tanggal %></span>
-                                    <div class="blog-slider__title"><%= artikel.judul %></div>
-                                    <div class="blog-slider__text"><%- artikel.caption %>
-                                    </div>
-                                    <a href="/showArtikel/<%= artikel._id %>" class="blog-slider__button">READ MORE</a>
-                                </div>
-                            </div>
-                        <% }); %>
-                    <% } %>
-                </div>
-                <div class="blog-slider__pagination"></div>
-            </div>
-        </div>
-    </section>
-    <!-- About Section-->
-    <section class="page-section bg-primary text-white mb-0" id="about">
-        <div class="container">
-            <!-- About Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-white">
-                About
-            </h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom divider-light">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- About Section Content-->
-            <div class="row">
-                <div class="col-lg-12 ms-auto text-center">
-                    <p class="lead"><%= page.about; %></p>
-                    <p class="lead">
-                        <br/>
-                        <br/>
-                        Klik tombol whatsapp di bawah ini untuk memesan katering WAnong
-                        melalui whatsapp
-                    </p>
-                </div>
-            </div>
-            <!-- About Section Button-->
-            <div class="text-center mt-4">
-                <a class="btn btn-outline-light btn-social-wa mx-1" href="#!">
-                    <i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </section>
-    <!-- Footer-->
-    <footer class="footer text-center" id="contact">
-        <div class="container">
-            <div class="row">
-                <!-- Footer Location-->
-                <div class="col-lg-6 mb-7 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Alamat</h4>
-                    <p class="lead mb-0">
-                        <%= page.alamat; %>
-                    </p>
-                </div>
-                <!-- Footer Social Icons-->
-                <div class="col-lg-6 mb-7 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Pemesanan Hubungi</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Copyright Section-->
-    <div class="copyright py-4 text-center text-white">
-        <div class="container">
-            <small>Copyright &copy; <%= page.title; %> 2021</small>
+            <div class="blog-slider__pagination"></div>
         </div>
     </div>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="javascripts/index.js"></script>
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    </body>
+</section>
+<!-- About Section-->
+<section class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-white">
+            About
+        </h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- About Section Content-->
+        <div class="row">
+            <div class="col-lg-12 ms-auto text-center">
+                <p class="lead"><%= page.about; %></p>
+                <p class="lead">
+                    <br/>
+                    <br/>
+                    Klik tombol whatsapp di bawah ini untuk memesan katering WAnong
+                    melalui whatsapp
+                </p>
+            </div>
+        </div>
+        <!-- About Section Button-->
+        <div class="text-center mt-4">
+            <a class="btn btn-outline-light btn-social-wa mx-1" href="#!">
+                <i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+</section>
+<!-- Ulasan Section-->
+<section class="page-section bg-secondary text-white mb-0">
+    <!-- About Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-white">
+        Ulasan Pelanggan
+    </h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+    </div>
+    <!-- Ulasan Section Content-->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <% for(let x = 1;x < totUlasan;x++){ %>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<%= x %>"
+                    aria-label="Slide <%= x+1 %>"></button>
+            <% } %>
+        </div>
+        <div class="carousel-inner py-5 text-center">
+            <div class="carousel-item active">
+                <i class="fas fa-quote-right fa-2x"></i>
+                <figure class="text-cent col-md-6 offset-md-3 mt-4">
+                    <blockquote class="blockquote">
+                        <p><%= fUlasan.ulasan %></p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer mt-2"><%= fUlasan.nama %></figcaption>
+                </figure>
+            </div>
+            <% ulasans.forEach((ulasan)=>{ %>
+                <div class="carousel-item">
+                    <i class="fas fa-quote-right fa-2x"></i>
+                    <figure class="col-md-6 offset-md-3 mt-4">
+                        <blockquote class="blockquote">
+                            <p><%= ulasan.ulasan %></p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer mt-2"><%= ulasan.nama %></figcaption>
+                    </figure>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a data-bs-target="#addUlasanModal" data-bs-toggle="modal" class="btn btn-primary btn-lg align-content-center">Tambahkan
+            Ulasan Anda Tentang Kami
+        </a>
+    </div>
+</section>
+<!-- Footer-->
+<footer class="footer text-center" id="contact">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Location-->
+            <div class="col-lg-6 mb-7 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Alamat</h4>
+                <p class="lead mb-0">
+                    <%= page.alamat; %>
+                </p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-lg-6 mb-7 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Pemesanan Hubungi</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<%- include fragment/ulasanmodal.ejs %>
+<!-- Copyright Section-->
+<div class="copyright py-4 text-center text-white">
+    <div class="container">
+        <small>Copyright &copy; <%= page.title; %> 2021</small>
+    </div>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="javascripts/index.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+</body>
 </html>

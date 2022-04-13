@@ -13,7 +13,8 @@ const authView = (req, res) => {
 const updateView = (req, res) => {
     const username = req.user.username;
     res.render('accSetting', {
-        username, messagesuc: req.flash('success'),
+        username,
+        messagesuc: req.flash('success'),
         messageerr: req.flash('error')
     })
 };

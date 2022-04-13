@@ -613,7 +613,7 @@ progress {
     margin-top: -1rem;
     margin-bottom: 1rem;
     font-size: 0.875em;
-    color: #6c757d;
+    color: white;
 }
 
 .blockquote-footer::before {
@@ -12411,4 +12411,15 @@ html {
         height: 11px;
         width: 30px;
     }
+}
+
+.testimonial-slider .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    background-color: #198754;
+    border-radius: 100%;
+}
+
+.testimonial-slider {
+    padding: 10px 0px 40px;
 }

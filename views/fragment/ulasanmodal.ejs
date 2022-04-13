@@ -1,0 +1,64 @@
+<!-- Add Modal HTML -->
+<div id="addUlasanModal" class="modal fade" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/addulasan" method="POST">
+                <div class="modal-body">
+                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0 text-center">
+                        Tambah Ulasan
+                    </h2>
+                    <!-- Icon Divider-->
+                    <div class="divider-custom">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="divider-custom-line"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <label for="token"><b>Token</b></label>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" type="text" id="token"
+                                       placeholder="XXXXXX" name="code"
+                                       required>
+                            </div>
+                            <div class="col-auto">
+                                <span class="d-inline-block" data-bs-toggle="popover"
+                                      data-bs-content="Token didapat jika anda pernah melakukan pemesanan di katering kami"><a
+                                            class="btn btn-primary"><i class="fas fa-question"></i></a></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="nama"><b>Nama Pengulas</b></label>
+                        <input class="form-control" id="nama" name="nama"
+                               placeholder="Nama" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="ulasan"><b>Ulasan</b> (max.100 Character)</label>
+                        <textarea maxlength="100" class="form-control" id="ulasan" name="ulasan"
+                                  placeholder="Ulasan"
+                                  required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Batal
+                        </button>
+                        <button type="submit" class="btn btn-success">Tambah
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

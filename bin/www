@@ -7,14 +7,33 @@ const app = require('../app');
 const debug = require('debug')('katering-javascript:server');
 const http = require('http');
 const Page = require("../model/page");
+const User = require("../model/user");
+const Code = require('../model/code');
 
 /**
  * Get port from environment and store in Express.
  */
 async function initData() {
-    const total = await Page.estimatedDocumentCount();
-    console.log(total)
-    if (total < 1) {
+    const totalP = await Page.estimatedDocumentCount();
+    const totalU = await User.estimatedDocumentCount();
+    const totalC = await Code.estimatedDocumentCount();
+    if (totalU < 1) {
+        User.register(new User({username: 'admin'}), 'admin')
+    }
+    if (totalC < 1) {
+        const obj = {
+            code: undefined,
+            number: undefined
+        };
+        Code.create(obj, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Initialize Data');
+            }
+        })
+    }
+    if (totalP < 1) {
         const obj = {
             setting: undefined,
             title: undefined,
