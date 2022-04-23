@@ -6,7 +6,7 @@ content management system for catering service-themed product catalogs.
 
 ## Tech Stack
 
-**Server:** Node, Express, Ejs(Template Engine)
+**Server:** Nodejs, Express, Ejs(Template Engine)
 
 
 ## Demo
