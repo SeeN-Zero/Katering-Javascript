@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1] - 2022-03-24
+
+### Fixed
+
+- Performance Issue
+
 ## [1.2.0] - 2022-04-13
 
 ### Added
