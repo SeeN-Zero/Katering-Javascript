@@ -1,4 +1,3 @@
-const User = require('../model/user')
 const passport = require('passport')
 
 const authView = (req, res) => {
@@ -48,23 +47,6 @@ const auth = (req, res) => {
         failureFlash: 'Password Atau Username Salah',
         successFlash: 'Selamat Datang'
       })(req, res)
-  } else {
-    const { usernamereg, passwordreg } = req.body
-    if (passwordreg.length < 8) {
-      req.flash('error', 'Password Minimal 8 Karakter')
-      res.redirect('/auth')
-    } else {
-      User.register(new User({ username: usernamereg }), passwordreg, function (err) {
-        if (err) {
-          console.log(err)
-          req.flash('error', 'Username ' + usernamereg + ' Sudah Ada')
-          res.redirect('/auth')
-        } else {
-          req.flash('success', 'Pendaftaran Akun Berhasil')
-          res.redirect('/auth')
-        }
-      })
-    }
   }
 }
 

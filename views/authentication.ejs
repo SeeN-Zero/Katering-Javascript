@@ -20,15 +20,6 @@
 </head>
 <body>
 <div class="container" id="container">
-    <div class="form-container sign-up-container">
-        <form action="/auth" method="post">
-            <h1>Create Account</h1>
-            <input id="usernamereg" type="text" name="usernamereg" placeholder="Username" required/>
-            <input id="passwordreg" type="password" name="passwordreg" placeholder="Password" required/>
-            <input type="hidden" name="formType" value="register">
-            <button>Sign Up</button>
-        </form>
-    </div>
     <div class="form-container sign-in-container">
         <form action="/auth" method="post">
             <h1>Log in</h1>
@@ -40,15 +31,9 @@
     </div>
     <div class="overlay-container">
         <div class="overlay">
-            <div class="overlay-panel overlay-left">
+            <div class="overlay-panel overlay-right">
                 <h1>Welcome Back!</h1>
                 <p>To keep connected with us please login!</p>
-                <button class="ghost" id="signIn">Sign In</button>
-            </div>
-            <div class="overlay-panel overlay-right">
-                <h1>Create Account!</h1>
-                <p>Enter your personal details and start your journey!</p>
-                <button class="ghost" id="signUp">Sign Up</button>
             </div>
         </div>
     </div>
