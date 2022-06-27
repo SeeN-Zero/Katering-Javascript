@@ -9,12 +9,6 @@ content management system for catering service-themed product catalogs.
 **Server:** Nodejs, Express, Ejs(Template Engine)
 
 
-## Demo
-
-https://katering-js.herokuapp.com/
-
-
-
 ## Run Locally
 
 Clone the project
