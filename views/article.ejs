@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <%- include fragment/head.ejs %>
 
 <body id="page-top">
 <%- include fragment/toast.ejs %>
+
 <!-- Page Wrapper -->
 <div id="wrapper">
+
     <!-- Sidebar -->
     <%- include fragment/sidebar.ejs %>
     <!-- End of Sidebar -->
@@ -14,11 +17,12 @@
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
+
             <!-- Topbar -->
             <%- include fragment/topbar.ejs %>
             <!-- End of Topbar -->
-            <!-- Begin Page Content -->
 
+            <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Content Row -->
                 <div class="col">
@@ -30,7 +34,7 @@
                                         Daftar Artikel
                                     </h3>
                                 </div>
-                                <div class="colmd"><a href="/artikelAdd" class="btn btn-success btn-icon-split">
+                                <div class="colmd"><a href="/articleadd" class="btn btn-success btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-plus"></i>
                                         </span>
@@ -48,21 +52,21 @@
                                     <tr>
                                         <th style="width: 15%">Judul</th>
                                         <th style="width: 70%">Deskripsi</th>
-                                        <th style="width: 10%">Action</th>
+                                        <th style="width: 10%">Aksi</th>
                                     </tr>
                                     </thead>
-                                        <tbody>
-                                        <% artikels.forEach(function(artikel) { %>
+                                    <tbody>
+                                    <% articles.forEach(function(article) { %>
                                         <tr>
-                                            <td><%= artikel.judul; %></td>
-                                            <td><%= artikel.caption; %></td>
+                                            <td><%= article.title; %></td>
+                                            <td><%= article.caption; %></td>
                                             <td>
                                                 <div class="row">
-                                                    <div class="col-3"><a href="/artikelEdit/<%= artikel._id; %>">
+                                                    <div class="col-3"><a href="/articleupdate/<%= article._id; %>">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </a></div>
                                                     <div class="col-3">
-                                                        <a href="#delete<%= artikel._id; %>"
+                                                        <a href="#delete<%= article._id; %>"
                                                            data-toggle="modal">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
@@ -70,7 +74,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <div id="delete<%= artikel._id; %>" class="modal fade" data-backdrop="static">
+                                        <div id="delete<%= article._id; %>" class="modal fade" data-backdrop="static">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <form>
@@ -95,36 +99,39 @@
                                                                     data-dismiss="modal">Batal
                                                             </button>
                                                             <a type="button" class="btn btn-danger"
-                                                               href="/artikel/delete/<%= artikel._id; %>">Hapus</a>
+                                                               href="/article/delete/<%= article._id; %>">Hapus</a>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
-                                        <% }); %>
-                                        </tbody>
+                                    <% }); %>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
+
         <!-- Footer -->
         <%- include fragment/foot.ejs %>
         <!-- End of Footer -->
+
     </div>
     <!-- End of Content Wrapper -->
+
 </div>
 <!-- End of Page Wrapper -->
 
-<!-- Scroll to Top Button-->
+<!-- Scroll to Top Button -->
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-<%- include fragment/logout.ejs %>
 
+<!-- Logout -->
+<%- include fragment/logout.ejs %>
 </body>
 </html>

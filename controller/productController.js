@@ -1,6 +1,6 @@
 const multer = require('multer')
-const Produk = require('../model/produk')
-const Artikel = require('../model/artikel')
+const Product = require('../model/product')
+const Article = require('../model/article')
 
 /* By Senna Annaba Ahmad */
 
@@ -23,20 +23,20 @@ const upload = multer({ storage })
                     VIEW
 =============================================
 */
-const viewProduk = async (req, res) => {
-  const totProduk = await Produk.estimatedDocumentCount()
-  const totArtikel = await Artikel.estimatedDocumentCount()
+const viewProduct = async (req, res) => {
+  const totalProduct = await Product.estimatedDocumentCount()
+  const totalArticle = await Article.estimatedDocumentCount()
   const username = await req.user.username
-  Produk.find({},
-    (err, produks) => {
+  Product.find({},
+    (err, products) => {
       if (err) {
         console.log(err)
-        res.redirect('/produk')
+        res.redirect('/product')
       } else {
-        res.render('produk', {
-          produks,
-          totProduk,
-          totArtikel,
+        res.render('product', {
+          products,
+          totalProduct,
+          totalArticle,
           username,
           messagesuc: req.flash('success'),
           messageerr: req.flash('error')
@@ -52,80 +52,80 @@ const viewProduk = async (req, res) => {
 */
 
 /* ===============ADD================== */
-const addProduk = (req, res) => {
+const addProduct = (req, res) => {
   const obj = {
     name: req.body.name,
-    deskripsi: req.body.deskripsi,
-    img: {
+    description: req.body.deskripsi,
+    image: {
       data: req.file.buffer,
       contentType: 'image/png'
     }
   }
-  Produk.create(obj, (err) => {
+  Product.create(obj, (err) => {
     if (err) {
       console.log(err)
       req.flash('error', err)
-      res.redirect('/produk')
+      res.redirect('/product')
     } else {
       req.flash('success', 'Produk Berhasil Ditambahkan')
-      res.redirect('/produk')
+      res.redirect('/product')
     }
   })
 }
 
 /* ===============UPDATE================== */
-const updateProduk = (req, res) => {
+const updateProduct = (req, res) => {
   const id = req.params.id
   if (req.file) {
     const obj = {
       name: req.body.name,
       deskripsi: req.body.deskripsi,
-      img: {
+      image: {
         data: req.file.buffer,
         contentType: 'image/png'
       }
     }
-    Produk.findByIdAndUpdate({ _id: id }, obj, (err) => {
+    Product.findByIdAndUpdate({ _id: id }, obj, (err) => {
       if (err) {
         req.flash('error', err)
         console.log(err)
-        res.redirect('/produk')
+        res.redirect('/product')
       } else {
         req.flash('success', 'Produk Berhasil Diupdate')
-        res.redirect('/produk')
+        res.redirect('/product')
       }
     })
   } else {
     const obj = {
       name: req.body.name,
-      deskripsi: req.body.deskripsi
+      description: req.body.deskripsi
     }
-    Produk.findByIdAndUpdate({ _id: id }, obj, (err) => {
+    Product.findByIdAndUpdate({ _id: id }, obj, (err) => {
       if (err) {
         req.flash('error', err)
         console.log(err)
-        res.redirect('/produk')
+        res.redirect('/product')
       } else {
         req.flash('success', 'Produk Berhasil Diupdate')
-        res.redirect('/produk')
+        res.redirect('/product')
       }
     })
   }
 }
 
 /* ===============DELETE================== */
-const deleteProduk = (req, res) => {
+const deleteProduct = (req, res) => {
   const id = req.params.id
-  Produk.findByIdAndRemove({ _id: id }, (err) => {
+  Product.findByIdAndRemove({ _id: id }, (err) => {
     if (err) {
       req.flash('error', err)
       console.log(err)
-      res.redirect('/produk')
+      res.redirect('/product')
     } else {
       req.flash('success', 'Produk Berhasil Dihapus')
-      res.redirect('/produk')
+      res.redirect('/product')
     }
   })
 }
 
-module.exports = { upload, viewProduk, addProduk, deleteProduk, updateProduk }
+module.exports = { upload, viewProduct, addProduct, updateProduct, deleteProduct }

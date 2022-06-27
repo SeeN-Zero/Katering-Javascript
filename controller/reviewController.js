@@ -1,5 +1,5 @@
 const Code = require('../model/code')
-const Ulasan = require('../model/ulasan')
+const Review = require('../model/review')
 
 /* By Senna Annaba Ahmad */
 
@@ -9,17 +9,17 @@ const Ulasan = require('../model/ulasan')
 =============================================
 */
 
-const viewUlasan = async (req, res) => {
+const viewReview = async (req, res) => {
   const code = await Code.findOne({ code: 'code' }).exec()
   const username = await req.user.username
-  Ulasan.find({},
-    (err, ulasans) => {
+  Review.find({},
+    (err, reviews) => {
       if (err) {
         console.log(err)
-        res.redirect('/produk')
+        res.redirect('/product')
       } else {
-        res.render('ulasan', {
-          ulasans,
+        res.render('review', {
+          reviews,
           username,
           code,
           messagesuc: req.flash('success'),
@@ -30,14 +30,14 @@ const viewUlasan = async (req, res) => {
   )
 }
 
-const addUlasan = async (req, res) => {
+const addReview = async (req, res) => {
   const number = await Code.findOne({ code: 'code' }).exec()
   if (req.body.code === number.number) {
     const obj = {
-      nama: req.body.nama,
-      ulasan: req.body.ulasan
+      name: req.body.name,
+      content: req.body.content
     }
-    Ulasan.create(obj, (err) => {
+    Review.create(obj, (err) => {
       if (err) {
         console.log(err)
         req.flash('error', err)
@@ -51,7 +51,7 @@ const addUlasan = async (req, res) => {
     })
   } else {
     console.log(number + '' + req.body.code)
-    req.flash('error', 'Code yang dimasukkan salah/Sudah t  erpakai')
+    req.flash('error', 'Code yang dimasukkan salah/Sudah terpakai')
     res.redirect('/')
   }
 }
@@ -68,18 +68,18 @@ const getCode = async (req, res) => {
   })
 }
 
-const deleteUlasan = (req, res) => {
+const deleteReview = (req, res) => {
   const id = req.params.id
-  Ulasan.findByIdAndRemove({ _id: id }, (err) => {
+  Review.findByIdAndRemove({ _id: id }, (err) => {
     if (err) {
       req.flash('error', err)
       console.log(err)
-      res.redirect('/ulasan')
+      res.redirect('/product')
     } else {
       req.flash('success', 'Ulasan Berhasil Dihapus')
-      res.redirect('/ulasan')
+      res.redirect('/review')
     }
   })
 }
 
-module.exports = { getCode, addUlasan, viewUlasan, deleteUlasan }
+module.exports = { getCode, addReview, viewReview, deleteReview }

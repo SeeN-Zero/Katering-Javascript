@@ -9,7 +9,7 @@ const http = require('http');
 const Page = require("../model/page");
 const User = require("../model/user");
 const Code = require('../model/code');
-
+const Review = require("../model/review");
 /**
  * Get port from environment and store in Express.
  */
@@ -17,6 +17,20 @@ async function initData() {
     const totalP = await Page.estimatedDocumentCount();
     const totalU = await User.estimatedDocumentCount();
     const totalC = await Code.estimatedDocumentCount();
+    const totalR = await Review.estimatedDocumentCount();
+    if (totalR <1 ){
+        const obj = {
+            name: undefined,
+            content: undefined
+        };
+        Review.create(obj, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Initialize Data');
+            }
+        })
+    }
     if (totalU < 1) {
         User.register(new User({username: 'admin'}), 'admin')
     }

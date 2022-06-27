@@ -1,36 +1,65 @@
 const express = require('express')
 const router = express.Router()
-const { viewUlasan, getCode, addUlasan, deleteUlasan } = require('../controller/ulasanController')
-const { upload, viewProduk, addProduk, deleteProduk, updateProduk } = require('../controller/produkController')
+const { viewReview, getCode, addReview, deleteReview } = require('../controller/reviewController')
+const { upload, viewProduct, addProduct, updateProduct, deleteProduct } = require('../controller/productController')
 const { viewPageSetting, updatePage } = require('../controller/pageController')
-const { viewIndex, artikelBlogView } = require('../controller/indexController')
-const { authView, auth, updateView, updateUser, logout } = require('../controller/authController')
+const { viewIndex, articleView } = require('../controller/indexController')
+const { authView, auth, updateUserView, updateUser, logout } = require('../controller/authController')
 const { protectRoute, redirectRoute } = require('../auth/authview')
-const { viewArtikel, addArtikel, updateArtikel, deleteArtikel, viewArtikelAdd, viewArtikelEdit } = require('../controller/artikelController')
+const { viewArticle, viewArticleAdd, viewArticleUpdate, addArticle, updateArticle, deleteArticle } = require('../controller/articleController')
 
-router.get('/', viewIndex)
+/*
+=============================================
+              ARTICLE ROUTE
+=============================================
+*/
+router.get('/article', protectRoute, viewArticle)
+router.get('/articleadd', protectRoute, viewArticleAdd)
+router.get('/articleupdate/:id', protectRoute, viewArticleUpdate)
+router.post('/article/update/:id', protectRoute, updateArticle)
+router.post('/article/add', protectRoute, addArticle)
+router.get('/article/delete/:id', protectRoute, deleteArticle)
+/*
+=============================================
+            AUTHENTICATION ROUTE
+=============================================
+*/
 router.get('/auth', redirectRoute, authView)
-router.get('/produk', protectRoute, viewProduk)
-router.get('/ulasan', protectRoute, viewUlasan)
-router.get('/token', protectRoute, getCode)
-router.get('/artikel', protectRoute, viewArtikel)
-router.get('/artikelAdd', protectRoute, viewArtikelAdd)
-router.get('/accsetting', protectRoute, updateView)
-router.get('/pagesetting', protectRoute, viewPageSetting)
-router.get('/showArtikel/:id', artikelBlogView)
-router.get('/artikelEdit/:id', protectRoute, viewArtikelEdit)
-router.get('/artikel/delete/:id', protectRoute, deleteArtikel)
-router.get('/produk/delete/:id', protectRoute, deleteProduk)
-router.get('/deleteulasan/:id', protectRoute, deleteUlasan)
-
 router.post('/auth', redirectRoute, auth)
+router.get('/accountsetting', protectRoute, updateUserView)
+router.post('/accountsetting', protectRoute, updateUser)
 router.post('/logout', protectRoute, logout)
-router.post('/addulasan', addUlasan)
-router.post('/accsetting', protectRoute, updateUser)
-router.post('/produk/add', protectRoute, upload.single('image'), addProduk)
-router.post('/artikelAdd/add', protectRoute, addArtikel)
-router.post('/produk/update/:id', protectRoute, upload.single('image'), updateProduk)
+/*
+=============================================
+            INDEX ROUTE
+=============================================
+*/
+router.get('/', viewIndex)
+router.get('/article/:id', articleView)
+/*
+=============================================
+            PAGE SETTING ROUTE
+=============================================
+*/
+router.get('/pagesetting', protectRoute, viewPageSetting)
 router.post('/pagesetting/update/:id', protectRoute, upload.single('logo'), updatePage)
-router.post('/artikelEdit/update/:id', protectRoute, updateArtikel)
+/*
+=============================================
+            PRODUCT ROUTE
+=============================================
+*/
+router.get('/product', protectRoute, viewProduct)
+router.post('/product/add', protectRoute, upload.single('image'), addProduct)
+router.post('/product/update/:id', protectRoute, upload.single('image'), updateProduct)
+router.get('/product/delete/:id', protectRoute, deleteProduct)
+/*
+=============================================
+            REVIEW ROUTE
+=============================================
+*/router.get('/review', protectRoute, viewReview)
+router.post('/review/add', addReview)
+router.get('/review/delete/:id', protectRoute, deleteReview)
+
+router.get('/token', protectRoute, getCode)
 
 module.exports = router

@@ -41,13 +41,13 @@
                     <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#menu">Menu</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#blog">Blog</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#blog">Artikel</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Tentang</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Kontak</a>
                 </li>
             </ul>
         </div>
@@ -57,9 +57,11 @@
 <header class="masthead bg-primary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
-        <img style="width: 15rem;" alt="Logo"
-             src="data:image/<%= page.logo.contentType; %>;base64,<%= page.logo.data.toString('base64'); %>">
-        <br>
+        <% if (page.logo != undefined) { %>
+            <img style="width: 15rem;" alt="Logo"
+                 src="data:image/<%= page.logo.contentType; %>;base64,<%= page.logo.data.toString('base64'); %>">
+            <br>
+        <% } %>
         <!-- Masthead Heading-->
         <h1 class="masthead-heading text-uppercase mb-0"><%= page.header; %></h1>
         <!-- Icon Divider-->
@@ -74,81 +76,80 @@
         </p>
     </div>
 </header>
-<!-- Menu Section-->
-<section class="page-section menu pb-5" id="menu">
-    <div class="container">
-        <!-- Menu Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-            Menu
-        </h2>
-        <!-- Icon Divider-->
-        <div class="divider-custom">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- Menu Grid Items-->
-        <div class="row justify-content-center">
-            <% if (produks.length > 0) { %>
-                <% produks.forEach(function(produk) { %>
+<% if (products.length > 0) { %>
+    <!-- Menu Section-->
+    <section class="page-section menu pb-5" id="menu">
+        <div class="container">
+            <!-- Menu Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+                Menu
+            </h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Menu Grid Items-->
+            <div class="row justify-content-center">
+                <% products.forEach(function(product) { %>
                     <!-- Menu Item-->
-
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="menu-item mx-auto" data-bs-toggle="modal"
-                             data-bs-target="#menu<%= produk._id; %>">
+                             data-bs-target="#menu<%= product._id; %>">
                             <div class="menu-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="menu-item-caption-content text-center text-white">
                                     <i class="fas fa-plus fa-3x"></i>
                                 </div>
                             </div>
                             <img style="width: 1000px; height: 225px; max-width: 100%; max-height: 100%" alt="Menu"
-                                 src="data:image/<%= produk.img.contentType; %>;base64,<%= produk.img.data.toString('base64'); %>">
+                                 src="data:image/<%= product.image.contentType; %>;base64,<%= product.image.data.toString('base64'); %>">
                         </div>
                     </div>
-                    <%- include fragment/menumodal.ejs %>
+                    <%- include fragment/indexmenumodal.ejs %>
                 <% }); %>
-            <% } %>
+            </div>
         </div>
-    </div>
-</section>
-<!-- Blog Section-->
-<section class="page-section pt-5" id="blog">
-    <div class="container">
-        <!-- Menu Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-            Blog dan Artikel
-        </h2>
-        <!-- Icon Divider-->
-        <div class="divider-custom pb-5 pb-md-3">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- Blog Section Content-->
-        <div class="blog-slider">
-            <div class="blog-slider__wrp swiper-wrapper">
-                <% if (artikels.length > 0) { %>
-                    <% artikels.forEach(function(artikel) { %>
+    </section>
+<% } %>
+<% if (articles.length > 0) { %>
+    <!-- Blog Section-->
+    <section class="page-section pt-5" id="blog">
+        <div class="container">
+            <!-- Menu Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+                Artikel
+            </h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom pb-5 pb-md-3">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Blog Section Content-->
+            <div class="blog-slider">
+                <div class="blog-slider__wrp swiper-wrapper">
+                    <% articles.forEach(function(article) { %>
                         <div class="blog-slider__item swiper-slide">
                             <div class="blog-slider__img">
                                 <img src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759872/kuldar-kalvik-799168-unsplash.webp"
                                      alt="">
                             </div>
                             <div class="blog-slider__content">
-                                <span class="blog-slider__code"><%= artikel.tanggal %></span>
-                                <div class="blog-slider__title"><%= artikel.judul %></div>
-                                <div class="blog-slider__text"><%- artikel.caption %>
+                                <span class="blog-slider__code"><%= article.date %></span>
+                                <div class="blog-slider__title"><%= article.title %></div>
+                                <div class="blog-slider__text"><%- article.caption %>
                                 </div>
-                                <a href="/showArtikel/<%= artikel._id %>" class="blog-slider__button">READ MORE</a>
+                                <a href="/article/<%= article._id %>" class="blog-slider__button">READ MORE</a>
                             </div>
                         </div>
                     <% }); %>
-                <% } %>
+                </div>
+                <div class="blog-slider__pagination"></div>
             </div>
-            <div class="blog-slider__pagination"></div>
         </div>
-    </div>
-</section>
+    </section>
+<% } %>
 <!-- About Section-->
 <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
@@ -169,7 +170,7 @@
                 <p class="lead">
                     <br/>
                     <br/>
-                    Klik tombol whatsapp di bawah ini untuk memesan katering WAnong
+                    Klik tombol whatsapp di bawah ini untuk memesan katering
                     melalui whatsapp
                 </p>
             </div>
@@ -181,57 +182,60 @@
         </div>
     </div>
 </section>
-<!-- Ulasan Section-->
-<section class="page-section bg-secondary text-white mb-0">
-    <!-- About Section Heading-->
-    <h2 class="page-section-heading text-center text-uppercase text-white">
-        Ulasan Pelanggan
-    </h2>
-    <!-- Icon Divider-->
-    <div class="divider-custom divider-light">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-        <div class="divider-custom-line"></div>
-    </div>
-    <!-- Ulasan Section Content-->
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-            <% for(let x = 1;x < totUlasan;x++){ %>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<%= x %>"
-                    aria-label="Slide <%= x+1 %>"></button>
-            <% } %>
+<% if (totalReview > 0) { %>
+    <!-- Ulasan Section-->
+    <section class="page-section bg-secondary text-white mb-0">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-white">
+            Ulasan Pelanggan
+        </h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
-        <div class="carousel-inner py-5 text-center">
-            <div class="carousel-item active">
-                <i class="fas fa-quote-right fa-2x"></i>
-                <figure class="text-cent col-md-6 offset-md-3 mt-4">
-                    <blockquote class="blockquote">
-                        <p><%= fUlasan.ulasan %></p>
-                    </blockquote>
-                    <figcaption class="blockquote-footer mt-2"><%= fUlasan.nama %></figcaption>
-                </figure>
+        <!-- Ulasan Section Content-->
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                <% for(let x = 1;x < totalReview;x++){ %>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<%= x %>"
+                            aria-label="Slide <%= x + 1 %>"></button>
+                <% } %>
             </div>
-            <% ulasans.forEach((ulasan)=>{ %>
-                <div class="carousel-item">
+            <div class="carousel-inner py-5 text-center">
+                <div class="carousel-item active">
                     <i class="fas fa-quote-right fa-2x"></i>
-                    <figure class="col-md-6 offset-md-3 mt-4">
+                    <figure class="text-cent col-md-6 offset-md-3 mt-4">
                         <blockquote class="blockquote">
-                            <p><%= ulasan.ulasan %></p>
+                            <p><%= firstReview.content %></p>
                         </blockquote>
-                        <figcaption class="blockquote-footer mt-2"><%= ulasan.nama %></figcaption>
+                        <figcaption class="blockquote-footer mt-2"><%= firstReview.name %></figcaption>
                     </figure>
                 </div>
-            <% }) %>
+                <% reviews.forEach((review)=>{ %>
+                    <div class="carousel-item">
+                        <i class="fas fa-quote-right fa-2x"></i>
+                        <figure class="col-md-6 offset-md-3 mt-4">
+                            <blockquote class="blockquote">
+                                <p><%= review.content %></p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer mt-2"><%= review.name %></figcaption>
+                        </figure>
+                    </div>
+                <% }) %>
+            </div>
         </div>
-    </div>
-    <div class="text-center mt-4">
-        <a data-bs-target="#addUlasanModal" data-bs-toggle="modal" class="btn btn-primary btn-lg align-content-center">Tambahkan
-            Ulasan Anda Tentang Kami
-        </a>
-    </div>
-</section>
+        <div class="text-center mt-4">
+            <a data-bs-target="#addUlasanModal" data-bs-toggle="modal"
+               class="btn btn-primary btn-lg align-content-center">Tambahkan
+                Ulasan Anda Tentang Kami
+            </a>
+        </div>
+    </section>
+<% } %>
 <!-- Footer-->
 <footer class="footer text-center" id="contact">
     <div class="container">
@@ -240,7 +244,7 @@
             <div class="col-lg-6 mb-7 mb-lg-0">
                 <h4 class="text-uppercase mb-4">Alamat</h4>
                 <p class="lead mb-0">
-                    <%= page.alamat; %>
+                    <%= page.address; %>
                 </p>
             </div>
             <!-- Footer Social Icons-->
@@ -251,7 +255,7 @@
         </div>
     </div>
 </footer>
-<%- include fragment/ulasanmodal.ejs %>
+<%- include fragment/indexulasanmodal.ejs %>
 <!-- Copyright Section-->
 <div class="copyright py-4 text-center text-white">
     <div class="container">

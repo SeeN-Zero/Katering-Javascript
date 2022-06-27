@@ -1,10 +1,10 @@
-const Artikel = require('../model/artikel')
+const Article = require('../model/article')
 
 /* By Senna Annaba Ahmad */
 
 /*
 =============================================
-              ARTIKEL CONTROLLER
+              ARTICLE CONTROLLER
 =============================================
 */
 
@@ -13,16 +13,16 @@ const Artikel = require('../model/artikel')
                     VIEW
 =============================================
 */
-const viewArtikel = async (req, res) => {
+const viewArticle = async (req, res) => {
   const username = await req.user.username
-  Artikel.find({ author: username },
-    (err, artikels) => {
+  Article.find({ author: username },
+    (err, articles) => {
       if (err) {
         console.log(err)
-        res.redirect('/produk')
+        res.redirect('/product')
       } else {
-        res.render('artikel', {
-          artikels,
+        res.render('article', {
+          articles,
           username,
           messagesuc: req.flash('success'),
           messageerr: req.flash('error')
@@ -30,25 +30,25 @@ const viewArtikel = async (req, res) => {
       }
     })
 }
-const viewArtikelAdd = async (req, res) => {
+const viewArticleAdd = async (req, res) => {
   const username = await req.user.username
-  res.render('artikelAdd', {
+  res.render('articleadd', {
     username,
     messagesuc: req.flash('success'),
     messageerr: req.flash('error')
   })
 }
-const viewArtikelEdit = async (req, res) => {
+const viewArticleUpdate = async (req, res) => {
   const id = req.params.id
   const username = await req.user.username
-  Artikel.find({ _id: id },
-    (err, artikel) => {
+  Article.find({ _id: id },
+    (err, article) => {
       if (err) {
         console.log(err)
-        res.redirect('/artikelEdit')
+        res.redirect('/article')
       } else {
-        res.render('artikelEdit', {
-          artikel,
+        res.render('articleupdate', {
+          article,
           username,
           messagesuc: req.flash('success'),
           messageerr: req.flash('error')
@@ -64,59 +64,59 @@ const viewArtikelEdit = async (req, res) => {
 */
 
 /* ===============ADD================== */
-const addArtikel = async (req, res) => {
+const addArticle = async (req, res) => {
   const username = await req.user.username
   const obj = {
-    judul: req.body.judul,
+    title: req.body.title,
     caption: req.body.caption,
-    isi: req.body.isi,
+    content: req.body.content,
     author: username
   }
-  Artikel.create(obj, (err) => {
+  Article.create(obj, (err) => {
     if (err) {
       console.log(err)
       req.flash('error', err)
-      res.redirect('/artikeladd')
+      res.redirect('/articleadd')
     } else {
       req.flash('success', 'Artikel Berhasil Ditambahkan')
-      res.redirect('/artikel')
+      res.redirect('/article')
     }
   })
 }
 
 /* ===============UPDATE================== */
-const updateArtikel = (req, res) => {
+const updateArticle = (req, res) => {
   const id = req.params.id
   const obj = {
-    judul: req.body.judul,
+    title: req.body.title,
     caption: req.body.caption,
-    isi: req.body.isi
+    content: req.body.content
   }
-  Artikel.findByIdAndUpdate({ _id: id }, obj, (err) => {
+  Article.findByIdAndUpdate({ _id: id }, obj, (err) => {
     if (err) {
       req.flash('error', err)
       console.log(err)
-      res.redirect('/artikelEdit')
+      res.redirect('/articleupdate')
     } else {
       req.flash('success', 'Artikel Berhasil Diupdate')
-      res.redirect('/artikel')
+      res.redirect('/article')
     }
   })
 }
 
 /* ===============DELETE================== */
-const deleteArtikel = (req, res) => {
+const deleteArticle = (req, res) => {
   const id = req.params.id
-  Artikel.findByIdAndRemove({ _id: id }, (err) => {
+  Article.findByIdAndRemove({ _id: id }, (err) => {
     if (err) {
       req.flash('error', err)
       console.log(err)
-      res.redirect('/artikel')
+      res.redirect('/article')
     } else {
       req.flash('success', 'Artikel Berhasil Dihapus')
-      res.redirect('/artikel')
+      res.redirect('/article')
     }
   })
 }
 
-module.exports = { viewArtikelAdd, viewArtikelEdit, viewArtikel, addArtikel, deleteArtikel, updateArtikel }
+module.exports = { viewArticle, viewArticleAdd, viewArticleUpdate, addArticle, updateArticle, deleteArticle }

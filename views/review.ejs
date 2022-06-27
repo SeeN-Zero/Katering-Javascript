@@ -77,14 +77,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <% ulasans.forEach(function(ulasan) { %>
+                                    <% reviews.forEach(function(review) { %>
                                         <tr>
-                                            <td><%= ulasan.nama; %></td>
-                                            <td><%= ulasan.ulasan; %></td>
+                                            <td><%= review.name; %></td>
+                                            <td><%= review.content; %></td>
                                             <td>
                                                 <div class="row">
                                                     <div class="col-3">
-                                                        <a href="#delete<%= ulasan._id; %>"
+                                                        <a href="#delete<%= review._id; %>"
                                                            data-toggle="modal">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a></div>
@@ -92,7 +92,7 @@
                                             </td>
                                         </tr>
                                         <!-- Delete Modal HTML -->
-                                        <div id="delete<%= ulasan._id; %>" class="modal fade" data-backdrop="static">
+                                        <div id="delete<%= review._id; %>" class="modal fade" data-backdrop="static">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <form>
@@ -117,7 +117,7 @@
                                                                     data-dismiss="modal">Batal
                                                             </button>
                                                             <a type="button" class="btn btn-danger"
-                                                               href="/deleteulasan/<%= ulasan._id; %>">Hapus</a>
+                                                               href="/review/delete/<%= review._id; %>">Hapus</a>
                                                         </div>
                                                     </form>
                                                 </div>

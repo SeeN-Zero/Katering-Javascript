@@ -3,16 +3,15 @@ const passport = require('passport')
 
 const authView = (req, res) => {
   res.render('authentication', {
-    title: 'Authentication',
     messagesuc: req.flash('success'),
     messageerr: req.flash('error')
 
   })
 }
 
-const updateView = (req, res) => {
+const updateUserView = (req, res) => {
   const username = req.user.username
-  res.render('accSetting', {
+  res.render('accountsetting', {
     username,
     messagesuc: req.flash('success'),
     messageerr: req.flash('error')
@@ -23,19 +22,18 @@ const updateUser = (req, res) => {
   const { oldPassword, newPassword, retypePassword } = req.body
   if (newPassword !== retypePassword) {
     req.flash('error', 'Pengetikan Ulang Password Salah')
-    res.redirect('/accSetting')
+    res.redirect('/accountsetting')
   } else if (newPassword.length < 8 || retypePassword.length < 8) {
     req.flash('error', 'Password Minimal 8 Karakter')
-    res.redirect('/accSetting')
+    res.redirect('/accountsetting')
   } else {
     req.user.changePassword(oldPassword, newPassword, (err) => {
       if (err) {
         req.flash('error', 'Password Lama Salah')
-        console.log('Gagal')
-        res.redirect('/accSetting')
+        res.redirect('/accountsetting')
       } else {
         req.flash('success', 'Password Berhasil Diubah')
-        res.redirect('/accSetting')
+        res.redirect('/accountsetting')
       }
     })
   }
@@ -45,7 +43,7 @@ const auth = (req, res) => {
   if (req.body.formType === 'login') {
     passport.authenticate('local',
       {
-        successRedirect: '/produk',
+        successRedirect: '/product',
         failureRedirect: '/auth',
         failureFlash: 'Password Atau Username Salah',
         successFlash: 'Selamat Datang'
@@ -74,4 +72,4 @@ const logout = (req, res) => {
   req.logout()
   res.redirect('/auth')
 }
-module.exports = { authView, auth, updateView, updateUser, logout }
+module.exports = { authView, auth, updateUserView, updateUser, logout }

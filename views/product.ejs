@@ -36,7 +36,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-auto">
                                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    <%= totProduk; %>
+                                                    <%= totalProduct; %>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-auto">
                                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    <%= totArtikel; %>
+                                                    <%= totalArticle; %>
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@
                             <div class="row">
                                 <div class="col-md">
                                     <h3 class="m-0 font-weight-bold text-primary">
-                                        Produk Table
+                                        Tabel Produk
                                     </h3>
                                 </div>
                                 <div class="colmd"><a href="#addEmployeeModal" class="btn btn-success btn-icon-split"
@@ -105,12 +105,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <% produks.forEach(function(produk) { %>
+                                    <% products.forEach(function(product) { %>
                                         <tr>
-                                            <td><%= produk.name; %></td>
-                                            <td><%= produk.deskripsi; %></td>
+                                            <td><%= product.name; %></td>
+                                            <td><%= product.description; %></td>
                                             <td>
-                                                <a href="#image<%= produk._id; %>" class=""
+                                                <a href="#image<%= product._id; %>" class=""
                                                    data-toggle="modal">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
@@ -118,19 +118,19 @@
                                             </td>
                                             <td>
                                                 <div class="row">
-                                                    <div class="col-3"><a href="#update<%= produk._id; %>"
+                                                    <div class="col-3"><a href="#update<%= product._id; %>"
                                                                           data-toggle="modal">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </a></div>
                                                     <div class="col-3">
-                                                        <a href="#delete<%= produk._id; %>"
+                                                        <a href="#delete<%= product._id; %>"
                                                            data-toggle="modal">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a></div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <%- include fragment/tablemodal.ejs %>
+                                        <%- include fragment/adminproductmodal.ejs %>
                                     <% }); %>
                                     </tbody>
 
@@ -138,10 +138,10 @@
                                     <div id="addEmployeeModal" class="modal fade" data-backdrop="static">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content">
-                                                <form action="/produk/add" method="POST"
+                                                <form action="/product/add" method="POST"
                                                       enctype="multipart/form-data">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">Add Employee</h4>
+                                                        <h4 class="modal-title">Tambah Produk</h4>
                                                         <button
                                                                 class="close"
                                                                 type="button"
@@ -165,7 +165,7 @@
                                                                       required></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="image">Upload Image</label>
+                                                            <label for="image">Unggah Gambar</label>
                                                             <input type="file" id="image" class="form-control-file"
                                                                    name="image" value="" accept="image/*" required>
                                                             <div class="invalid-tooltip">

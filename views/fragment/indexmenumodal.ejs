@@ -1,5 +1,5 @@
 <!-- Menu Modal-->
-<div class="portfolio-modal modal fade" id="menu<%= produk._id; %>" tabindex="-1"
+<div class="portfolio-modal modal fade" id="menu<%= product._id; %>" tabindex="-1"
      aria-labelledby=""
      aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -13,7 +13,7 @@
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title-->
                             <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">
-                                <%= produk.name; %>
+                                <%= product.name; %>
                             </h2>
                             <!-- Icon Divider-->
                             <div class="divider-custom">
@@ -25,12 +25,12 @@
                             </div>
                             <!-- Portfolio Modal - Image-->
                             <img alt="Image Menu" style="width: 400px; height: 225px; max-width: 100%; max-height: 100%"
-                                 src="data:image/<%= produk.img.contentType; %>;base64,<%= produk.img.data.toString('base64'); %>">
+                                 src="data:image/<%= product.image.contentType; %>;base64,<%= product.image.data.toString('base64'); %>">
                             <!-- Portfolio Modal - Text-->
                             <br>
                             <br>
                             <p class="mb-4">
-                                <%= produk.deskripsi; %>
+                                <%= product.description; %>
                             </p>
                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                 <i class="fas fa-times fa-fw"></i>

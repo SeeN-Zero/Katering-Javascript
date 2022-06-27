@@ -1,7 +1,7 @@
 const Page = require('../model/page')
-const Produk = require('../model/produk')
-const Artikel = require('../model/artikel')
-const Ulasan = require('../model/ulasan')
+const Product = require('../model/product')
+const Article = require('../model/article')
+const Review = require('../model/review')
 
 /* By Senna Annaba Ahmad */
 
@@ -17,27 +17,27 @@ const Ulasan = require('../model/ulasan')
 */
 const viewIndex = async (req, res) => {
   const page = await Page.findOne({ setting: 'setting' }).exec()
-  const produks = await Produk.find({}).exec()
-  const artikels = await Artikel.find({}).exec()
-  const ulasans = await Ulasan.find({}).exec()
-  const fUlasan = await ulasans.shift()
-  const totUlasan = await Ulasan.estimatedDocumentCount()
+  const products = await Product.find({}).exec()
+  const articles = await Article.find({}).exec()
+  const reviews = await Review.find({}).exec()
+  const firstReview = await reviews.shift()
+  const totalReview = await Review.estimatedDocumentCount()
   res.render('index', {
-    produks,
     page,
-    artikels,
-    fUlasan,
-    ulasans,
-    totUlasan,
+    products,
+    articles,
+    reviews,
+    firstReview,
+    totalReview,
     messagesuc: req.flash('success'),
     messageerr: req.flash('error')
   })
 }
 
-const artikelBlogView = async (req, res) => {
+const articleView = async (req, res) => {
   const id = req.params.id
   const page = await Page.findOne({ setting: 'setting' }).exec()
-  const artikel = await Artikel.findOne({ _id: id }).exec()
-  res.render('artikelBlogView', { artikel, page })
+  const article = await Article.findOne({ _id: id }).exec()
+  res.render('articleview', { article, page })
 }
-module.exports = { viewIndex, artikelBlogView }
+module.exports = { viewIndex, articleView }

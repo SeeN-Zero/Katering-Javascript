@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.2] - 2022-06-27
+
+### Fixed
+
+- Error index page
+
 ## [1.2.1] - 2022-03-24
 
 ### Fixed

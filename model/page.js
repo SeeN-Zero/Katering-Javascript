@@ -31,12 +31,12 @@ const pageSchema = new mongoose.Schema({
     required: true,
     default: 'About'
   },
-  alamat: {
+  address: {
     type: String,
     required: true,
     default: 'Alamat'
   },
-  hp: {
+  number: {
     type: String,
     required: true,
     default: 'Hp'

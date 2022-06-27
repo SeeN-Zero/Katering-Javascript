@@ -20,7 +20,7 @@ const viewPageSetting = async (req, res) => {
         console.log(err)
         res.redirect('/pageSetting')
       } else {
-        res.render('pageSetting', {
+        res.render('pagesetting', {
           page,
           username,
           messagesuc: req.flash('success'),
@@ -48,17 +48,17 @@ const updatePage = (req, res) => {
       header: req.body.header,
       subheader: req.body.subheader,
       about: req.body.about,
-      alamat: req.body.alamat,
-      hp: req.body.hp
+      address: req.body.address,
+      number: req.body.number
     }
     Page.findOneAndUpdate({ setting: id }, obj, (err) => {
       if (err) {
         req.flash('error', err)
         console.log(err)
-        res.redirect('/pageSetting')
+        res.redirect('/pagesetting')
       } else {
         req.flash('success', 'Halaman Utama Berhasil Diupdate')
-        res.redirect('/pageSetting')
+        res.redirect('/pagesetting')
       }
     })
   } else {
@@ -67,18 +67,18 @@ const updatePage = (req, res) => {
       header: req.body.header,
       subheader: req.body.subheader,
       about: req.body.about,
-      alamat: req.body.alamat,
-      hp: req.body.hp
+      address: req.body.address,
+      number: req.body.number
     }
     console.log(obj)
     Page.findOneAndUpdate({ setting: id }, obj, (err) => {
       if (err) {
         req.flash('error', err)
         console.log(err)
-        res.redirect('/pageSetting')
+        res.redirect('/pagesetting')
       } else {
         req.flash('success', 'Halaman Utama Berhasil Diupdate')
-        res.redirect('/pageSetting')
+        res.redirect('/pagesetting')
       }
     })
   }

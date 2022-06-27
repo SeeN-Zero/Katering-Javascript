@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <%- include fragment/head.ejs %>
 
 <body id="page-top">
 <%- include fragment/toast.ejs %>
+
 <!-- Page Wrapper -->
 <div id="wrapper">
+
     <!-- Sidebar -->
     <%- include fragment/sidebar.ejs %>
     <!-- End of Sidebar -->
@@ -14,11 +17,12 @@
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
+
             <!-- Topbar -->
             <%- include fragment/topbar.ejs %>
             <!-- End of Topbar -->
-            <!-- Begin Page Content -->
 
+            <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Content Row -->
                 <div class="col">
@@ -33,20 +37,20 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <% artikel.forEach(function(artikel) { %>
-                                <form action="/artikelEdit/update/<%= artikel._id %>" method="POST">
+                            <% article.forEach(function(article) { %>
+                                <form action="/article/update/<%= article._id %>" method="POST">
                                     <div class="form-group">
-                                        <label for="name">Judul Artikel</label>
-                                        <input class="form-control" type="text" id="name"
-                                               placeholder="Judul Artikel" name="judul"
-                                               value="<%= artikel.judul %>"
+                                        <label for="title">Judul Artikel</label>
+                                        <input class="form-control" type="text" id="title"
+                                               placeholder="Judul Artikel" name="title"
+                                               value="<%= article.title %>"
                                                required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="caption">Caption(Optional)</label>
+                                        <label for="caption">Deskripsi Singkat</label>
                                         <input class="form-control" type="text" id="caption"
                                                placeholder="Caption(Optional)" name="caption"
-                                               value="<%= artikel.caption %>">
+                                               value="<%= article.caption %>">
                                     </div>
                                     <div class="form-group">
                                         <label for="desc">Isi Artikel</label>
@@ -54,9 +58,9 @@
                                                 $('#summernote').summernote({
                                                     height: 300,
                                                     minHeight: 300
-                                                }).summernote('code', '<%- artikel.isi %>');
+                                                }).summernote('code', '<%- article.content %>');
                                             });</script>
-                                        <textarea class="form-control" id="summernote" name="isi"
+                                        <textarea class="form-control" id="summernote" name="content"
                                                   placeholder="Deskripsi Produk"
                                                   required></textarea>
                                     </div>
@@ -67,23 +71,25 @@
                     </div>
                 </div>
             </div>
-
-            <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
+
         <!-- Footer -->
         <%- include fragment/foot.ejs %>
         <!-- End of Footer -->
+
     </div>
     <!-- End of Content Wrapper -->
+
 </div>
 <!-- End of Page Wrapper -->
 
-<!-- Scroll to Top Button-->
+<!-- Scroll to Top Button -->
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-<%- include fragment/logout.ejs %>
 
+<!-- Logout -->
+<%- include fragment/logout.ejs %>
 </body>
 </html>

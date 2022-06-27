@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const moment = require('moment')
-const artikelSchema = new mongoose.Schema({
-  judul: {
+const articleSchema = new mongoose.Schema({
+  title: {
     type: String,
     required: true
   },
@@ -9,11 +9,11 @@ const artikelSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  isi: {
+  content: {
     type: String,
     required: true
   },
-  tanggal: {
+  date: {
     type: String,
     default: moment(new Date(Date.now())).format('ll')
   },
@@ -23,5 +23,5 @@ const artikelSchema = new mongoose.Schema({
   }
 })
 
-const Artikel = mongoose.model('Artikel', artikelSchema)
-module.exports = Artikel
+const Article = mongoose.model('Article', articleSchema)
+module.exports = Article

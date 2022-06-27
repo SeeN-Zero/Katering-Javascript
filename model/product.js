@@ -1,17 +1,17 @@
 const mongoose = require('mongoose')
-const produkSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-  deskripsi: {
+  description: {
     type: String
   },
-  img: {
+  image: {
     data: Buffer,
     contentType: String
   }
 })
 
-const Produk = mongoose.model('Produk', produkSchema)
-module.exports = Produk
+const Product = mongoose.model('Product', productSchema)
+module.exports = Product
