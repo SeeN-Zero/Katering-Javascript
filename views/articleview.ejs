@@ -26,7 +26,7 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0"><%= artikel.judul; %></h1>
+                <h1 class="masthead-heading text-uppercase mb-0"><%= article.judul; %></h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -35,11 +35,11 @@
                 </div>
                 <!-- Masthead Subheading-->
                 <p class="masthead-subheading font-weight-light mb-0">
-                    Author &nbsp&nbsp:&nbsp&nbsp <%= artikel.author; %>
+                    Author &nbsp&nbsp:&nbsp&nbsp <%= article.author; %>
                 </p>
                 <!-- Masthead Subheading-->
                 <p class="masthead-subheading font-weight-light mb-0">
-                    <%= artikel.tanggal; %>
+                    <%= article.tanggal; %>
                 </p>
             </div>
         </header>
@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-lg-12 ms-auto px-4 px-md-5"
                          style="font-size: 20px;text-align: justify;padding-left: 100px;padding-right: 100px;">
-                        <p class="lead"><%- artikel.isi %></p>
+                        <p class="lead"><%- article.isi %></p>
                     </div>
                 </div>
             </div>
