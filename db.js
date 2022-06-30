@@ -1,15 +1,13 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
 
-dotenv.config();
+dotenv.config()
 
-const db = process.env.DB_URI;
+const db = process.env.DB_URI
 const connection = () => {
-    mongoose.connect(db)
-        .then(console.log('Connected'))
-        .catch(err => console.log(err));
+  mongoose.connect(db)
+    .then(console.log('Connected'))
+    .catch(err => console.log(err))
 }
 
-module.exports = {connection};
-
-
+module.exports = { connection }
